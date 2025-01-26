@@ -92,7 +92,7 @@ const ProductDetails = () => {
     else {
       try {
         const response = await fetch(
-          "http://localhost:8000/orders/add-product-to-cart",
+          "/orders/add-product-to-cart",
           {
             method: "POST",
             headers: {

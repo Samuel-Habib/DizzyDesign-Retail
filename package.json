@@ -46,7 +46,6 @@
     "webpack-dev-server": "^5.1.0"
   },
   "description": "",
-  "proxy": "http://localhost:8000",
   "browserslist": {
     "production": [
       ">0.2%",

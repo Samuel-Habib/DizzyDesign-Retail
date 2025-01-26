@@ -29,14 +29,13 @@ Registered users can save their credit card information, home address, access di
     ```
 5. Add your .env
 
-    ```PORT= 8000
+    ```
     MONGODB_URI = "mongodb+srv://USER_NAME:PASSWORD@CLUSTER_NAME.CLUSTER_NUMBER.mongodb.net/DB_NAME?retryWrites=true&w=majority&appName=CLUSTER_NAME"
     ENVIRONMENT=sandbox
     CLIENT_ID <Get this from a paypal buisness account>
     CLIENT_SECRET <Get this from a paypal buisness account>
     RESEND_API_KEY <Get this from resend.com>
     JWT_SECRET=secret
-    CLIENT_URL=localhost:8000
     EMAIL
     ```
 
