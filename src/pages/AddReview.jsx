@@ -37,7 +37,7 @@ const AddReview = ({ productId, userId, userName, productName }) => {
             console.log("Submitting review payload:", reviewPayload);
 
             // API call to create the review
-            const response = await fetch("/reviews", {
+            const response = await fetch("/api/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

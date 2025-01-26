@@ -18,7 +18,7 @@ const UserProfile = () => {
   // Authentication function
   const authenticate = async () => {
     try {
-      const response = await fetch("/users/check-auth", {
+      const response = await fetch("/api/users/check-auth", {
         credentials: "include", // Include cookies for session-based authentication
       });
       const data = await response.json();
@@ -40,7 +40,7 @@ const UserProfile = () => {
   // Fetch reviews created by the authenticated user
   const fetchUserReviews = async (userId) => {
     try {
-      const response = await fetch(`/reviews/user/${userId}`); // Adjust API endpoint as needed
+      const response = await fetch(`/api/reviews/user/${userId}`); // Adjust API endpoint as needed
       if (!response.ok) {
         throw new Error("Failed to fetch user reviews");
       }
@@ -54,7 +54,7 @@ const UserProfile = () => {
   // Handle updating a review
   const handleUpdateReview = async (reviewId) => {
     try {
-      const response = await fetch(`/reviews/${reviewId}`, {
+      const response = await fetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const UserProfile = () => {
   // Handle deleting a review
   const handleDeleteReview = async (reviewId) => {
     try {
-      const response = await fetch(`/reviews/${reviewId}`, {
+      const response = await fetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
       });
 
@@ -106,7 +106,7 @@ const UserProfile = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/users/logout", {
+      const response = await fetch("/api/users/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -127,7 +127,7 @@ const UserProfile = () => {
       const username = user._id;
       console.log(username);
 
-      const response = await fetch("/users/is-admin", {
+      const response = await fetch("/api/users/is-admin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

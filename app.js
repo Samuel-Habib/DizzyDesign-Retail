@@ -28,12 +28,12 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 // Mount API routes
-app.use('/users', userRoutes);
-app.use('/products', productRoutes);
-app.use('/reviews', reviewRoutes);
-app.use('/images', imageRoutes);
-app.use('/orders', orderRoutes);
-app.use('/paypal', paypalRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/images', imageRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/paypal', paypalRoutes);
 
 app.use(express.static(path.join(__dirname, 'build')));
 

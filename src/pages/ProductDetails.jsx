@@ -19,7 +19,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const productResponse = await fetch(`/products/${id}`);
+        const productResponse = await fetch(`/api/products/${id}`);
         if (!productResponse.ok) {
           throw new Error("Failed to fetch product details");
         }
@@ -28,7 +28,7 @@ const ProductDetails = () => {
         // If there's an imageID, fetch the associated image
         if (productData.imageID) {
           try {
-            const imageResponse = await fetch(`/images/${productData.imageID}`);
+            const imageResponse = await fetch(`/api/images/${productData.imageID}`);
             if (!imageResponse.ok) {
               console.error("Failed to fetch image:", imageResponse.statusText);
             } else {
@@ -49,7 +49,7 @@ const ProductDetails = () => {
 
     const fetchReviews = async () => {
       try {
-        const reviewsResponse = await fetch(`/reviews/product/${id}`);
+        const reviewsResponse = await fetch(`/api/reviews/product/${id}`);
         if (!reviewsResponse.ok) {
           throw new Error("Failed to fetch reviews");
         }
@@ -70,13 +70,13 @@ const ProductDetails = () => {
 
     // a get reqeust to check if this order is already in the cart
 
-    const ordersResponse = await fetch('/orders')
+    const ordersResponse = await fetch('/api/orders')
     const ordersData = await ordersResponse.json()
     const order = ordersData.find(order => order.productID === product._id && order.status === 'in_cart')
 
     if (order) {
       try {
-        await fetch(`/orders/${order._id}/increase-quantity`, {
+        await fetch(`/api/orders/${order._id}/increase-quantity`, {
           method: 'PUT',
           headers: {
         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const ProductDetails = () => {
     else {
       try {
         const response = await fetch(
-          "/orders/add-product-to-cart",
+          "/api/orders/add-product-to-cart",
           {
             method: "POST",
             headers: {

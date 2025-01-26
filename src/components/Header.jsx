@@ -8,7 +8,7 @@ const Header = () => {
 
   const loggedIn = async () => {
     try {
-      const response = await fetch("/users/check-auth", {
+      const response = await fetch("/api/users/check-auth", {
         credentials: "include", // Include cookies for session-based auth
       });
       const data = await response.json();

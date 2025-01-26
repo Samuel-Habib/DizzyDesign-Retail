@@ -14,7 +14,7 @@ const OrdersHistory = () => {
     useEffect(() => {
         const checkUserStatus = async () => {
             try {
-                const response = await fetch("/users/check-auth", {
+                const response = await fetch("/api/users/check-auth", {
                     credentials: "include", // Ensure session info is included
                 });
                 const data = await response.json();
@@ -44,7 +44,7 @@ const OrdersHistory = () => {
     // Fetch orders and attach images dynamically
     const fetchOrdersWithImages = async () => {
         try {
-            const response = await fetch("/orders");
+            const response = await fetch("/api/orders");
             const ordersData = await response.json();
             console.log("Fetched orders:", ordersData);
 
@@ -53,12 +53,12 @@ const OrdersHistory = () => {
                     if (order.productID) {
                         try {
                             // Fetch product details
-                            const productResponse = await fetch(`/products/${order.productID}`);
+                            const productResponse = await fetch(`/api/products/${order.productID}`);
                             const productData = await productResponse.json();
 
                             // Fetch image if imageID exists
                             if (productData.imageID) {
-                                const imageResponse = await fetch(`/images/${productData.imageID}`);
+                                const imageResponse = await fetch(`/api/images/${productData.imageID}`);
                                 if (imageResponse.ok) {
                                     const imageData = await imageResponse.json();
                                     order.imageURL = imageData.image; // Attach image URL dynamically
@@ -86,7 +86,7 @@ const OrdersHistory = () => {
         if (!window.confirm("Are you sure you want to cancel this order?")) return;
 
         try {
-            const response = await fetch(`/orders/${orderID}/cancel`, {
+            const response = await fetch(`/api/orders/${orderID}/cancel`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
             });

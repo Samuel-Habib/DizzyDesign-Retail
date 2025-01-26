@@ -32,7 +32,7 @@
             const productPrice = document.getElementById('product-price').value;
             const productDescription = document.getElementById('product-description').value;
             try {
-                const response = await fetch(`/products/${productId}`, {
+                const response = await fetch(`/api/products/${productId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -54,7 +54,7 @@
         deleteProductButton.addEventListener('click', async () => {
             const productId = document.getElementById('product-id').value;
             try {
-                const response = await fetch(`/products/${productId}`, {
+                const response = await fetch(`/api/products/${productId}`, {
                     method: 'DELETE'
                 });
                 const result = await response.json();

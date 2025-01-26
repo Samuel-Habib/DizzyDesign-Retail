@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("/users/check-auth", {
+        const response = await fetch("/api/users/check-auth", {
           credentials: "include",
         });
         const data = await response.json();

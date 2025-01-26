@@ -10,7 +10,7 @@ const EditProduct = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`/products/${productId}`, {
+            const response = await fetch(`/api/products/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ const EditProduct = () => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`/products/${productId}`, {
+            const response = await fetch(`/api/products/${productId}`, {
                 method: 'DELETE'
             });
             const result = await response.json();

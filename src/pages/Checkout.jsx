@@ -13,7 +13,7 @@ const Checkout = () => {
   useEffect(() => {
     const fetchOrdersWithImages = async () => {
       try {
-        const response = await axios.get("/orders");
+        const response = await axios.get("/api/orders");
         console.log("Fetched Orders:", response.data);
         setOrders(response.data); // Set the orders state
         calculateTotal(response.data);
@@ -46,7 +46,7 @@ const Checkout = () => {
 
     const fetchPayPalConfig = async () => {
       try {
-        const response = await axios.get("/paypal/config");
+        const response = await axios.get("/api/paypal/config");
         await loadPayPalSdk(response.data.clientId, response.data.currency, response.data.intent);
       } catch (error) {
         console.error("Error fetching PayPal config:", error);

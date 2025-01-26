@@ -19,7 +19,7 @@ const App = () => {
     useEffect(() => {
         const checkUserStatus = async () => {
             try {
-                const response = await fetch('/users/check-auth', {
+                const response = await fetch('/api/users/check-auth', {
                     credentials: 'include', // Ensure session info is included
                 });
                 const data = await response.json();
@@ -80,7 +80,7 @@ const App = () => {
             let imageId = null;
             if (imageFile) {
                 console.log("Uploading image...");
-                const imageResponse = await fetch('/images', {
+                const imageResponse = await fetch('/api/images', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const App = () => {
             console.log('Product Data to be sent:', productData);
     
             // Send product data to the backend
-            const productResponse = await fetch('/products', {
+            const productResponse = await fetch('/api/products', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

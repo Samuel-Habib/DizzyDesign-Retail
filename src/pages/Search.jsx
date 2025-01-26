@@ -19,7 +19,7 @@ const SearchProducts = () => {
     setError(null);
 
     try {
-      const response = await fetch(`/products/search?query=${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`/api/products/search?query=${encodeURIComponent(searchQuery)}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -38,7 +38,7 @@ const SearchProducts = () => {
         validProducts.map(async (product) => {
           if (product.imageID) {
             try {
-              const imageResponse = await fetch(`/images/${product.imageID}`);
+              const imageResponse = await fetch(`/api/images/${product.imageID}`);
               if (imageResponse.ok) {
                 const imageData = await imageResponse.json();
                 product.imageUrl = imageData.image; // Add the image URL to the product object

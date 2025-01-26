@@ -14,7 +14,7 @@ const Cart = () => {
     const fetchCartItems = async () => {
       try {
         // Fetch all orders with status 'in_cart'
-        const response = await fetch("/orders?status=in_cart");
+        const response = await fetch("/api/orders?status=in_cart");
         console.log(response, "response")
         if (!response.ok) {
           console.error("Failed to fetch cart items:", response.statusText);
@@ -31,11 +31,11 @@ const Cart = () => {
           filteredCartItems.map(async (item) => {
             if (item.productID) {
               try {
-                const productResponse = await fetch(`/products/${item.productID}`);
+                const productResponse = await fetch(`/api/products/${item.productID}`);
                 if (productResponse.ok) {
                   const productData = await productResponse.json();
                   if (productData.imageID) {
-                    const imageResponse = await fetch(`/images/${productData.imageID}`);
+                    const imageResponse = await fetch(`/api/images/${productData.imageID}`);
                     if (imageResponse.ok) {
                       const imageData = await imageResponse.json();
                       item.imageUrl = imageData.image;
@@ -73,7 +73,7 @@ const Cart = () => {
 
   // Handle removing an item from the cart
   const handleRemove = (orderID) => {
-    fetch(`/orders/${orderID}/remove`, { method: "DELETE" })
+    fetch(`/api/orders/${orderID}/remove`, { method: "DELETE" })
       .then((response) => response.json())
       .then(() => {
         const updatedCartItems = cartItems.filter((item) => item._id !== orderID);

@@ -11,7 +11,7 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         // Fetch products from the backend
-        const response = await fetch("/products");
+        const response = await fetch("/api/products");
         if (!response.ok) {
           console.error("Failed to fetch products:", response.statusText);
           return;
@@ -32,7 +32,7 @@ const Home = () => {
             if (product.imageID) {
               try {
                 // Fetch the image using imageID
-                const imageResponse = await fetch(`/images/${product.imageID}`);
+                const imageResponse = await fetch(`/api/images/${product.imageID}`);
                 if (imageResponse.ok) {
                   const imageData = await imageResponse.json();
                   product.imageUrl = imageData.image; // Add the image URL to the product object
