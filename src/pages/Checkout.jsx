@@ -22,11 +22,11 @@ const Checkout = () => {
           response.data.map(async (order) => {
             if (order.productID) {
               try {
-                const productResponse = await axios.get(`/products/${order.productID}`);
+                const productResponse = await axios.get(`/api/products/${order.productID}`);
                 const productData = productResponse.data;
 
                 if (productData.imageID) {
-                  const imageResponse = await axios.get(`/images/${productData.imageID}`);
+                  const imageResponse = await axios.get(`/api/images/${productData.imageID}`);
                   order.imageUrl = imageResponse.data.image;
                 }
               } catch (error) {
@@ -117,7 +117,7 @@ const Checkout = () => {
         createOrder: () => {
           console.log("Creating PayPal order...");
           return axios
-            .post("/paypal/create_order", { intent: "CAPTURE" })
+            .post("/api/paypal/create_order", { intent: "CAPTURE" })
             .then((response) => response.data.id)
             .catch((error) => {
               console.error("Error creating PayPal order:", error);
@@ -131,7 +131,7 @@ const Checkout = () => {
 
           Promise.all(
             inCartOrders.map((order) =>
-              axios.put(`/orders/${order._id}/complete`).then((response) =>
+              axios.put(`/api/orders/${order._id}/complete`).then((response) =>
                 console.log("Order Updated:", response.data)
               )
             )
