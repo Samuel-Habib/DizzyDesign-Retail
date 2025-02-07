@@ -4,7 +4,6 @@ const cors = require('cors'); // Import CORS middleware
 require('./config/db.config');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
 
 // Enable CORS for API access
 app.use(cors());
@@ -35,10 +34,6 @@ app.use('/api/images', imageRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/paypal', paypalRoutes);
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Serve Static Assets
-app.use('/assets', express.static(path.join(__dirname, 'public'))); // Serve static assets like images, fonts, etc.
 app.use('/styles', express.static(path.join(__dirname, 'style'))); // Serve styles
 // app.use('/images', express.static(path.join(__dirname, 'jpgs'))); // Serve images
 
@@ -63,7 +58,7 @@ app.use(
     })
   );
 
-// Start the Server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
